@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#E5E7EB] font-sans antialiased;
+  }
+}
+
+/* Safe area utilities for modern mobile browsers */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
