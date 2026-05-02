@@ -91,9 +91,14 @@ export default function App() {
       const todayStr = today.toLocaleDateString();
       const timeStr = today.toLocaleTimeString();
 
-      // 1. SerpApi (Google News) 호출
+      // 1. SerpApi (Google News) 호출 - 배포(Vercel)와 로컬 환경 구분
       const query = "글로벌 증시 시황 when:1d";
-      const serpUrl = `/api/serp/search.json?engine=google_news&q=${encodeURIComponent(query)}&gl=kr&hl=ko&api_key=${serpApiKey}`;
+      const isDev = import.meta.env.DEV;
+      
+      // 로컬에서는 Vite Proxy 활용, 배포 환경에서는 Vercel Serverless Function 활용
+      const serpUrl = isDev
+        ? `/api/serp/search.json?engine=google_news&q=${encodeURIComponent(query)}&gl=kr&hl=ko&api_key=${serpApiKey}`
+        : `/api/serp?engine=google_news&q=${encodeURIComponent(query)}&gl=kr&hl=ko`;
       
       const res = await fetch(serpUrl);
       const data = await res.json();

@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/api/serp/:path*",
-      "destination": "https://serpapi.com/:path*"
-    },
-    {
       "source": "/api/naver/:path*",
       "destination": "https://openapi.naver.com/:path*"
     }
